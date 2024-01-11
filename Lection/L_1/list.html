@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .delete-button {
+        border: 1px solid grey;
+        border-radius: 20%;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--  -->
+    <h1>Список дел</h1>
+    <input type="text" class="task-input" placeholder="добавить задачу" />
+    <button class="add-button">добавить</button>
+    <ul class="task-list"></ul>
+    <!--  -->
+    <!--  -->
+
+    <script>
+      const taskInput = document.querySelector(".task-input");
+      const addButton = document.querySelector(".add-button");
+      const taskList = document.querySelector(".task-list");
+
+      // восстанавливаем список дел из localStorage
+      if (localStorage.getItem("tasks")) {
+        taskList.innerHTML = localStorage.getItem("tasks");
+      }
+
+      addButton.addEventListener("click", () => {
+        const taskDescription = taskInput.value;
+        if (taskDescription !== "") {
+          const listItem = document.createElement("li");
+          listItem.classList.add("task-item");
+          listItem.innerHTML = `
+            <span class="task-decsription">${taskDescription}</span>
+            <button class="delete-button">x</button>
+            `;
+          taskList.appendChild(listItem);
+
+          taskInput.value = "";
+
+          // сохраняем список в localStorage
+          localStorage.setItem("tasks", taskList.innerHTML);
+        }
+      });
+
+      taskList.addEventListener("click", (event) => {
+        if (event.target.classList.contains("delete-button")) {
+          const listItem = event.target.closest("li");
+            listItem.parentNode.removeChild(listItem);
+        //   listItem.remove();
+        }
+        // обновление localStorage
+        localStorage.setItem("tasks", taskList.innerHTML);
+      });
+    </script>
+  </body>
+</html>

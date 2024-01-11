@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lection 1</title>
+  </head>
+  <body>
+    <h1>ширина</h1>
+    <p class="windowWidth" style="font-size: 30px"></p>
+    <h1>высота</h1>
+    <p class="windowHeigth" style="font-size: 30px"></p>
+
+    <script>
+      const windowWidthElem = document.querySelector(".windowWidth");
+      const windowHeigth = document.querySelector(".windowHeigth");
+
+      windowWidthElem.textContent = window.innerWidth;
+      windowHeigth.textContent = window.innerHeight;
+
+      window.addEventListener("resize", (event) => {
+        windowWidthElem.textContent = window.innerWidth;
+        windowHeigth.textContent = window.innerHeight;
+
+        // console.log(window.innerWidth, window.innerHeight);
+        console.log(
+          document.documentElement.clientWidth,
+          document.documentElement.clientHeight
+        );
+      });
+    </script>
+    <script src="bom.js"></script>
+  </body>
+</html>

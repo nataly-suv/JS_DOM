@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задание 1</title>
+  </head>
+  <body>
+    <!-- задание 1, часть 1 -->
+    <h1>Определение текущего размера окна браузера</h1>
+    <h3>ширина</h3>
+    <p class="windowWidth" style="font-size: 20px"></p>
+    <h3>высота</h3>
+    <p class="windowHeigth" style="font-size: 20px"></p>
+
+    <!-- задание 1, часть 3 -->
+    <h1>Управление историей переходов</h1>
+    <a href="task1.html">страница 1</a>
+    <a href="task1part2.html">страница 2</a>
+    <div>
+      <button class="backBTN">назад</button>
+      <button class="forwardBTN">вперед</button>
+    </div>
+
+    <!-- скрипт -->
+    <script src="task1.js"></script>
+
+    <script>
+      // задание 1, часть 1
+      const windowWidthElem = document.querySelector(".windowWidth");
+      const windowHeigth = document.querySelector(".windowHeigth");
+
+      windowWidthElem.textContent = window.innerWidth;
+      windowHeigth.textContent = window.innerHeight;
+
+      window.addEventListener("resize", (event) => {
+        windowWidthElem.textContent = window.innerWidth;
+        windowHeigth.textContent = window.innerHeight;
+      });
+
+      //   задание 1, часть 2
+      // Подтверждение закрытия страницы:
+      // Создайте всплывающее окно или диалоговое окно, которое появляется при попытке закрыть вкладку браузера
+      // и спрашивает пользователя, уверен ли он в своем решении закрыть страницу.
+      window.addEventListener("beforeunload", (event) => {
+        // Отмените событие, как указано в стандарте.
+        event.preventDefault();
+        // Chrome требует установки возвратного значения.
+        event.returnValue = "";
+      });
+    </script>
+  </body>
+</html>

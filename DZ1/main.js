@@ -52,6 +52,7 @@ function printSchedule() {
 
     // колчиство записаных человек
     const currentPersonElem = document.createElement("div");
+    currentPersonElem.classList.add("currentPerson");
     currentPersonElem.textContent = `Кол-во записанных человек: ${item.currentPerson}`;
     divInfoElem.appendChild(currentPersonElem);
 
@@ -77,6 +78,11 @@ function printSchedule() {
 
 printSchedule();
 
+// метод для перезаписывания блока информации
+function changeInfo() {
+
+}
+
 let arrayButtonsInElem = document.querySelectorAll(".btn_in");
 let arrayButtonsOutElem = document.querySelectorAll(".btn_out");
 
@@ -88,9 +94,14 @@ for (let index = 0; index < arrayButtonsInElem.length; index++) {
     } else {
       scheduleData[index].currentPerson = scheduleData[index].currentPerson + 1;
 
-      scheduleElem.innerHTML = "";
-      printSchedule();
-      console.log(scheduleData);
+    //   scheduleElem.innerHTML = "";
+    //   printSchedule();
+    //   console.log(scheduleData); 
+
+    // меняю количество записанных человек по итедсу нажатой кнопки
+      const currentPersonElem = document.querySelectorAll('.currentPerson')
+    //   console.log(currentPersonElem);
+      currentPersonElem[index].textContent=`Кол-во записанных человек: ${scheduleData[index].currentPerson}`;
     }
   });
 }
@@ -100,8 +111,12 @@ for (let index = 0; index < arrayButtonsOutElem.length; index++) {
   arrayButtonsOutElem[index].addEventListener("click", () => {
     scheduleData[index].currentPerson = scheduleData[index].currentPerson - 1;
 
-    scheduleElem.innerHTML = "";
-    printSchedule();
-    console.log(scheduleData);
+    // scheduleElem.innerHTML = "";
+    // printSchedule();
+    // console.log(scheduleData);
+
+    const currentPersonElem = document.querySelectorAll('.currentPerson')
+    // console.log(currentPersonElem);
+    currentPersonElem[index].textContent=`Кол-во записанных человек: ${scheduleData[index].currentPerson}`;
   });
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      padding-right: calc(50% - 600px);
+      padding-left: calc(50% - 300px);
+      font-size: 26px;
+    }
+
+    .btn {
+      margin-top: 100px;
+      padding: 10px 30px;
+      background-color: aquamarine;
+    }
+  </style>
+  <body>
+    <button class="btn">Купить</button>
+
+    <script>
+      const btnEl = document.querySelector(".btn");
+
+      function check() {
+        const clickEvent = new Event("click", { bubbles: true });
+        btnEl.dispatchEvent(clickEvent);
+      }
+
+      btnEl.addEventListener("click", function (event) {
+        if (event.isTrusted) {
+          btnEl.textContent = "товар довавлен";
+        } else {
+          console.log("упс");
+        }
+      });
+
+      setTimeout(check, 2000);
+    </script>
+  </body>
+</html>
+
+
+<!-- const buyBtn = document.querySelector(".buy-btn");
+
+      buyBtn.addEventListener("click", (e) => {
+        if (e.isTrusted) {
+          console.log("Событие является доверенным.");
+
+          const initTextContent = e.target.textContent;
+          e.target.textContent = "Товар добавлен в корзину";
+
+          setTimeout(() => {
+            e.target.textContent = initTextContent;
+          }, 2000);
+        } else {
+          console.log("Событие не является доверенным!");
+        }
+      });
+
+      buyBtn.dispatchEvent(new MouseEvent("click")); -->

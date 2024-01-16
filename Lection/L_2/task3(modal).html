@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding-right: calc(50% - 600px);
+        padding-left: calc(50% - 300px);
+        font-size: 26px;
+      }
+      .btn {
+        background-color: black;
+        color: aqua;
+        padding: 20px;
+        font-size: 22px;
+      }
+      .modal {
+        width: 300px;
+        height: 200px;
+        background-color: aqua;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">Открыть модальное окно</button>
+
+    <div class="modal">это модальное окно</div>
+
+    <script>
+      const btnEl = document.querySelector(".btn");
+      const modalEl = document.querySelector(".modal");
+
+      btnEl.addEventListener("click", () => {
+        modalEl.style.display = "block";
+      });
+
+      document.addEventListener("mousedown", (event) => {
+        if (!modalEl.contains(event.target) && event.target !== btnEl) {
+          modalEl.style.display = "none";
+        }
+      });
+
+    </script>
+  </body>
+</html>

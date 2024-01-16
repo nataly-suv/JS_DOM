@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding-right: calc(50% - 600px);
+        padding-left: calc(50% - 300px);
+        font-size: 26px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Исходные данные</h1>
+    <div class="price1">
+      <div data-price1="25">Товар 1</div>
+      <div data-price1="50">Товар 2</div>
+      <div data-price1="75">Товар 3</div>
+      <div data-price1="100">Товар 4</div>
+    </div>
+
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <div class="rating1">
+      <div data-rating1="5">Товар 1</div>
+      <div data-rating1="3">Товар 2</div>
+      <div data-rating1="4">Товар 3</div>
+      <div data-rating1="2">Товар 4</div>
+    </div>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <h1>После отработки функций</h1>
+    <div class="price">
+      <div data-price="25">Товар 1</div>
+      <div data-price="50">Товар 2</div>
+      <div data-price="75">Товар 3</div>
+      <div data-price="100">Товар 4</div>
+    </div>
+
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <div class="rating">
+      <div data-rating="5">Товар 1</div>
+      <div data-rating="3">Товар 2</div>
+      <div data-rating="4">Товар 3</div>
+      <div data-rating="2">Товар 4</div>
+    </div>
+    <!--  -->
+    <script>
+      // функция, которая принимает максимальную цену и срывает все товары выше этой цены
+      const filterElemByDataAttribute = (attributeName, maxPrice) => {
+        const elements = Array.from(
+          document.querySelectorAll(`[${attributeName}]`)
+        );
+        console.log(elements); // [div, div, div, div]
+
+        elements.forEach((elem) => {
+          const price = parseFloat(elem.getAttribute(attributeName));
+          console.log(price);
+          // возвращает значение (value) атрибута с именем attributeName (25, 50, 75, 100)
+          if (price > maxPrice) {
+            elem.style.display = "none";
+          }
+        });
+      };
+
+      filterElemByDataAttribute("data-price", 50);
+
+      // сортировка по рейтингу
+      const sortElemByDataAttribute = (attributeName) => {
+        const rating = document.querySelector(".rating");
+        const elements = Array.from(
+          rating.querySelectorAll(`[${attributeName}]`)
+        );
+        console.log(elements); // [div, div, div, div]
+        elements.sort((a, b) => {
+          const ratingA = parseInt(a.getAttribute(attributeName));
+          const ratingB = parseInt(b.getAttribute(attributeName));
+          return ratingB - ratingA;
+        });
+        
+        elements.forEach((elem) => {
+          rating.appendChild(elem);
+        });
+      };
+
+      sortElemByDataAttribute("data-rating");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .form {
+        width: 400px;
+        font-size: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Выберите страну:</h1>
+    <form id="country-form">
+      <select id="country-select" class="form">
+        <!-- выпадающий список  -->
+        <option value="">Выберите страну</option>
+        <option value="russia">Россия</option>
+        <option value="usa">США</option>
+        <option value="china">Китай</option>
+      </select>
+    </form>
+
+    <h2>Стлица:</h2>
+    <p id="capitai-info">Выберите страну, чтобы узнать столицу</p>
+
+    <!--  -->
+    <script>
+      const selectElem = document.getElementById("country-select");
+      const capitalInfoElem = document.getElementById("capitai-info");
+
+      selectElem.onchange = function () {
+        const selectedCounty = selectElem.value;
+        let capital = "";
+
+        // определяем столицу
+        switch (selectedCounty) {
+          case "russia":
+            capital = "Москва";
+            break;
+          case "usa":
+            capital = "Вашингтон";
+            break;
+          case "china":
+            capital = "Пекин";
+            break;
+          default:
+            capital = "Выберите страну, чтобы узнать столицу";
+            break;
+        }
+        capitalInfoElem.textContent = capital;
+      };
+    </script>
+  </body>
+</html>
+
+<!-- selectElem.onchange = function () {} 
+Это тоже самое, что и событие change
+selectElem.addEventListener('change', () => {})
+-->
